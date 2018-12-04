@@ -1,0 +1,15 @@
+{
+  "common": {
+    "defaultConnOpts": {
+      "heartbeat": 5,
+      "reconnectIdle": 5,
+      "opts": {}
+    }
+  },
+  "cuks": {
+    "connection": {
+    },
+    "channel": {
+    }
+  }
+}

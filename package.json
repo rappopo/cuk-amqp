@@ -1,0 +1,25 @@
+{
+  "name": "@rappopo/cuk-amqp",
+  "version": "0.0.1",
+  "description": "AMQP Connector & Helpers for Rappopo Cuk",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "cuk",
+    "queue",
+    "amqp",
+    "rabbitmq",
+    "erlang",
+    "pubsub",
+    "worker",
+    "job"
+  ],
+  "author": "Ardhi Lukianto <ardhi@lukianto.com>",
+  "license": "MIT",
+  "dependencies": {
+    "amqp-connection-manager": "^2.3.0",
+    "amqplib": "^0.5.2"
+  }
+}
