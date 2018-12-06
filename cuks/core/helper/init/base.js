@@ -6,14 +6,14 @@ module.exports = function (cuk) {
   return function (conn, name, setupFunc) {
     const wrapper = conn.createChannel({
       json: true,
-      setup: function (channel) {
-        return setupFunc(channel)
-      }
+      setup: setupFunc
     })
+
     wrapper.send = (msg, opts) => {
-      trace('Sending to %s', name)
+      trace('CHAN:SEND => %s -> %s', name, JSON.stringify(msg))
       return wrapper.sendToQueue(name, msg, opts)
     }
+
     return wrapper
   }
 }

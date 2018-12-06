@@ -2,7 +2,7 @@
 
 module.exports = function (cuk) {
   const { helper } = cuk.pkg.core.lib
-  const baseConsumer = require('./base_consumer')(cuk)
+  const base = require('./base')(cuk)
 
   return (conn, name, handler, opts) => {
     opts = opts || {}
@@ -21,6 +21,6 @@ module.exports = function (cuk) {
       ])
     }
 
-    return baseConsumer(conn, name, setupFunc)
+    return base(conn, name, setupFunc)
   }
 }

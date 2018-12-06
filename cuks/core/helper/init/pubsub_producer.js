@@ -2,7 +2,8 @@
 
 module.exports = function (cuk) {
   const { helper } = cuk.pkg.core.lib
-  const baseProducer = require('./base_producer')(cuk)
+  const base = require('./base')(cuk)
+  const { trace } = cuk.pkg.amqp
 
   return (conn, name, opts) => {
     opts = helper('core:merge')(opts || {}, { durable: false })
@@ -11,6 +12,13 @@ module.exports = function (cuk) {
       return channel.assertExchange(name, 'fanout', opts)
     }
 
-    return baseProducer(conn, name, setupFunc)
+    const wrapper = base(conn, name, setupFunc)
+
+    wrapper.send = (msg, opts) => {
+      trace('PUBSUB:SEND => %s -> %s', name, JSON.stringify(msg))
+      return wrapper.sendToQueue(name, msg, opts)
+    }
+
+    return wrapper
   }
 }
